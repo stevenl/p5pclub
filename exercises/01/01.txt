@@ -1,0 +1,27 @@
+This is an excerpt from the sv.c file:
+
+    An SV (or AV, HV, etc.) is allocated in two parts: the head (struct
+    sv, av, hv...) contains type and reference count information, and for
+    many types, a pointer to the body (struct xrv, xpv, xpviv...), which
+    contains fields specific to each type.  Some types store all they need
+    in the head, so don't have a body.
+
+Does a SVIV have a body?
+
+    An SVIV is an integer scalar value.
+    They did have a body prior to Perl 5.9.2, but no longer have it since then.
+
+What does it mean for a SV to have a body?
+
+    The head will contain a reference to another structure representing the body.
+    The body contains fields specific to each type.
+
+What does the SVIV structure consist of?
+
+    It consists of a SvANY pointer such that instead of pointing to a
+    real body, it points into the memory before the location of the
+    head. We compute this pointer such that the location of
+    the integer member of the hypothetical body struct happens to
+    be the same as the location of the integer member of the bodyless
+    SV head.
+
