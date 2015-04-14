@@ -1,0 +1,36 @@
+=head1 Exercise 6 (suggested by Gonzalo)
+
+Write a function in XS that computes the sum of its arguments and
+returns said sum as a Perl numeric value.
+
+You may receive any number and type of arguments: scalars, arrays or
+hashes, and you should handle them this way:
+
+=over 4
+
+=item 1. Scalar:
+
+The value to be returned is the scalar's numeric
+value, or 0 if not numeric.
+
+=item 2. Array:
+
+Apply the function to each of the array's elements;
+the value to be returned is the sum of the value you got for each
+element in the array.
+
+=item 3. Hash:
+
+Apply the function to each of the hash's values;
+the value to be returned is the sum of the value you got for each
+value in the hash.
+
+=back
+
+Examples:
+
+  sum_args(1, 2, "hello", 3);                 # 6
+  sum_args(1, 2, [3, 4, [10, 11], 5]);        # 36
+  sum_args(1, {'nl' => [4, 5], 'uk' => [8]}); # 18
+
+=cut

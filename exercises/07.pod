@@ -1,0 +1,26 @@
+=head1 Exercise 7 (suggested by Yves)
+
+Topic: L<Devel::Peek>
+
+Following exercise 5, here is another structure:
+
+    SV = IV(0x12e6dd8) at 0x12e6de8
+      REFCNT = 1
+      FLAGS = (TEMP,ROK)
+      RV = 0x12fb488
+      SV = PVFM(0x13035a0) at 0x12fb488
+        REFCNT = 2
+        FLAGS = (OBJECT)
+        PV = 0
+        STASH = 0x12fab40    "Foo"
+        COMP_STASH = 0x0
+        START = 0x1303200 ===> 0
+        ROOT = 0x1303300
+        GVGV::GV = 0x12faeb8    "main" :: "STDOUT"
+        FILE = "t.pl"
+        FLAGS = 0x0
+        OUTSIDE_SEQ = 2
+        LINES = 0
+        PADLIST = 0x12fb4a0
+        PADNAME = 0x12fb530(0x13032d0) PAD = 0x12fb518(0x1302f30)
+        OUTSIDE = 0x12e6fc8 (MAIN)

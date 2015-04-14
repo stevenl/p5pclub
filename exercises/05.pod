@@ -1,0 +1,186 @@
+=head1 Exercise 5 (suggested by Yves)
+
+Topic: L<Devel::Peek>
+
+Below are three structures which in some ways are very similar.  They
+all consist of arrays of scalar refs.
+
+Find code that will generate these structures, and assuming each
+structure was stored in a variable C<$ar>, explain what
+
+    ${${$ar->[0]}} = "x";
+
+would do to each one.
+
+Note: in this question the only attributes which matter are addresses.
+This question is about referential structure, not refcounts or flags.
+
+=over 4
+
+=item * Structure 1
+
+    SV = IV(0x21d2ec8) at 0x21d2ed8
+      REFCNT = 1
+      FLAGS = (PADMY,ROK)
+      RV = 0x21d2de8
+      SV = PVAV(0x21d3e38) at 0x21d2de8
+        REFCNT = 2
+        FLAGS = ()
+        ARRAY = 0x21e0d90
+        FILL = 2
+        MAX = 2
+        ARYLEN = 0x0
+        FLAGS = (REAL)
+        Elt No. 0
+        SV = IV(0x21d2fe8) at 0x21d2ff8
+          REFCNT = 1
+          FLAGS = (ROK)
+          RV = 0x21e7c00
+          SV = IV(0x21e7bf0) at 0x21e7c00
+            REFCNT = 4
+            FLAGS = (PADMY,ROK)
+            RV = 0x21e7b88
+            SV = IV(0x21e7b78) at 0x21e7b88
+              REFCNT = 3
+              FLAGS = (PADMY,ROK)
+              RV = 0x21e7c00
+        Elt No. 1
+        SV = IV(0x21e71e8) at 0x21e71f8
+          REFCNT = 1
+          FLAGS = (ROK)
+          RV = 0x21e7b88
+          SV = IV(0x21e7b78) at 0x21e7b88
+            REFCNT = 3
+            FLAGS = (PADMY,ROK)
+            RV = 0x21e7c00
+            SV = IV(0x21e7bf0) at 0x21e7c00
+              REFCNT = 4
+              FLAGS = (PADMY,ROK)
+              RV = 0x21e7b88
+        Elt No. 2
+        SV = IV(0x21e7200) at 0x21e7210
+          REFCNT = 1
+          FLAGS = (ROK)
+          RV = 0x21e7c00
+          SV = IV(0x21e7bf0) at 0x21e7c00
+            REFCNT = 4
+            FLAGS = (PADMY,ROK)
+            RV = 0x21e7b88
+            SV = IV(0x21e7b78) at 0x21e7b88
+              REFCNT = 3
+              FLAGS = (PADMY,ROK)
+              RV = 0x21e7c00
+    
+
+=item * Structure 2
+
+    SV = IV(0x21d2eb0) at 0x21d2ec0
+      REFCNT = 1
+      FLAGS = (PADMY,ROK)
+      RV = 0x21e7240
+      SV = PVAV(0x21d3e88) at 0x21e7240
+        REFCNT = 1
+        FLAGS = ()
+        ARRAY = 0x21e09c0
+        FILL = 2
+        MAX = 3
+        ARYLEN = 0x0
+        FLAGS = (REAL)
+        Elt No. 0
+        SV = IV(0x21e72d8) at 0x21e72e8
+          REFCNT = 2
+          FLAGS = (ROK)
+          RV = 0x21e7228
+          SV = IV(0x21e7218) at 0x21e7228
+            REFCNT = 3
+            FLAGS = (ROK)
+            RV = 0x21e72e8
+            SV = IV(0x21e72d8) at 0x21e72e8
+              REFCNT = 2
+              FLAGS = (ROK)
+              RV = 0x21e7228
+        Elt No. 1
+        SV = IV(0x21e7218) at 0x21e7228
+          REFCNT = 3
+          FLAGS = (ROK)
+          RV = 0x21e72e8
+          SV = IV(0x21e72d8) at 0x21e72e8
+            REFCNT = 2
+            FLAGS = (ROK)
+            RV = 0x21e7228
+            SV = IV(0x21e7218) at 0x21e7228
+              REFCNT = 3
+              FLAGS = (ROK)
+              RV = 0x21e72e8
+        Elt No. 2
+        SV = IV(0x21e7350) at 0x21e7360
+          REFCNT = 1
+          FLAGS = (ROK)
+          RV = 0x21e7228
+          SV = IV(0x21e7218) at 0x21e7228
+            REFCNT = 3
+            FLAGS = (ROK)
+            RV = 0x21e72e8
+            SV = IV(0x21e72d8) at 0x21e72e8
+              REFCNT = 2
+              FLAGS = (ROK)
+              RV = 0x21e7228
+
+
+=item * Structure 3
+
+    SV = IV(0x2216ba8) at 0x2216bb8
+      REFCNT = 1
+      FLAGS = (PADMY,ROK)
+      RV = 0x2216d08
+      SV = PVAV(0x21d3fc8) at 0x2216d08
+        REFCNT = 1
+        FLAGS = ()
+        ARRAY = 0x21eeb20
+        FILL = 2
+        MAX = 2
+        ARYLEN = 0x0
+        FLAGS = (REAL)
+        Elt No. 0
+        SV = IV(0x21e7b78) at 0x21e7b88
+          REFCNT = 5
+          FLAGS = (PADMY,ROK)
+          RV = 0x21e7c00
+          SV = IV(0x21e7bf0) at 0x21e7c00
+            REFCNT = 5
+            FLAGS = (PADMY,ROK)
+            RV = 0x21e7b88
+            SV = IV(0x21e7b78) at 0x21e7b88
+              REFCNT = 5
+              FLAGS = (PADMY,ROK)
+              RV = 0x21e7c00
+        Elt No. 1
+        SV = IV(0x21e7bf0) at 0x21e7c00
+          REFCNT = 5
+          FLAGS = (PADMY,ROK)
+          RV = 0x21e7b88
+          SV = IV(0x21e7b78) at 0x21e7b88
+            REFCNT = 5
+            FLAGS = (PADMY,ROK)
+            RV = 0x21e7c00
+            SV = IV(0x21e7bf0) at 0x21e7c00
+              REFCNT = 5
+              FLAGS = (PADMY,ROK)
+              RV = 0x21e7b88
+        Elt No. 2
+        SV = IV(0x21e7b78) at 0x21e7b88
+          REFCNT = 5
+          FLAGS = (PADMY,ROK)
+          RV = 0x21e7c00
+          SV = IV(0x21e7bf0) at 0x21e7c00
+            REFCNT = 5
+            FLAGS = (PADMY,ROK)
+            RV = 0x21e7b88
+            SV = IV(0x21e7b78) at 0x21e7b88
+              REFCNT = 5
+              FLAGS = (PADMY,ROK)
+              RV = 0x21e7c00
+
+=back
+
+=cut
