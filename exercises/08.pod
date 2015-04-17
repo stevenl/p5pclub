@@ -1,0 +1,13 @@
+=head1 Exercise 7 (suggested by Omar)
+
+Writing a function that, when it is invoked with a variable, attaches some
+magic to it which does something, like printing a message to the screen.
+
+Example:
+
+    my $x = 1;
+    xs_magify(\$x);
+
+At this point we exited the scope and C<$x> has gone away.
+We should see now B<Hello Magic!> on I<STDERR>.
+
